@@ -13,6 +13,7 @@
 </template>
 
 <script>
+
 export default {
 
 name: "Answers",
@@ -26,6 +27,9 @@ data() {
         isActive: false,
         isCorrect: false,
         isWrong: false,
+
+        isContinue: false,
+        pagePrice: -1,
 
         empty: [],
 
@@ -95,6 +99,7 @@ methods: {
             } else {
                 this.questions.push(this.index);
                 this.changeIndex()
+                this.pagePrice++;
             }
             } else {
                 console.log('Sbagliato')
@@ -129,12 +134,16 @@ methods: {
 
             if(correct === true) {
                 this.isCorrect = false;
+                this.isContinue = true;
+                this.getContinue();
+                this.pageIndex();
             } else {
                 this.isWrong = false;
             }
 
-        },4000)
 
+        },4000);
+        
     },
  
     changeIndex() {
@@ -143,7 +152,15 @@ methods: {
 
     emptyQuestion() {
         this.$emit('emptyQuestion', this.empty)
-    }
+    },
+
+    getContinue() {
+        this.$emit('getContinue', this.isContinue)
+    },
+
+    pageIndex() {
+        this.$emit('pageIndex', this.pagePrice)
+    },
 },
 
 }

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+/* import Price from "../components/Price.vue"; */
 import Container from "../components/Container.vue";
 
 Vue.use(VueRouter);
